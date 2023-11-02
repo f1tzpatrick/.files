@@ -64,9 +64,9 @@ if command -v starship &>/dev/null; then
 fi
 
 if command -v nvm &>/dev/null; then
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"                                       # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"                                       # This loads nvm
+	[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 fi
 
 if command -v nvim &>/dev/null; then
@@ -98,6 +98,7 @@ fi
 
 if command -v fzf &>/dev/null; then
 	[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+	source $HOME/.files/fzf.bash
 	alias branches='git checkout $(git branch -a | fzf)'
 fi
 
@@ -130,4 +131,3 @@ if command -v shellcheck &>/dev/null; then
 fi
 
 source $HOME/.files/functions
-
