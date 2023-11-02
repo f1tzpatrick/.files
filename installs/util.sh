@@ -63,7 +63,7 @@ install_neofetch() {
 		pushd "$DOWNLOADS_DIR"
 		curl -sSL "$NEOFETCH_URL" -o "${NEOFETCH_VERSION}.tar.gz"
 		tar -xzvf "${NEOFETCH_VERSION}.tar.gz"
-		make -C "neofetch-${NEOFETCH_VERSION}" PREFIX="$BIN_DIR" install
+		make -C "neofetch-${NEOFETCH_VERSION}" PREFIX="$BIN_DIR"/neofetch install
 		popd
 	fi
 
@@ -86,13 +86,13 @@ install_jq() {
 }
 
 install_pipes() {
-	: "${PIPES_VERSION:="v1.3.0"}"
-	PIPES_URL="https://github.com/pipeseroni/pipes.sh/releases/tag/v${PIPES_VERSION}.tar.gz"
+	: "${PIPES_VERSION:="1.3.0"}"
+	PIPES_URL="https://github.com/pipeseroni/pipes.sh/archive/refs/tags/v${PIPES_VERSION}.tar.gz"
 	if ! command -v pipes.sh &>/dev/null; then
 		pushd "$DOWNLOADS_DIR"
 		curl -sSL "$PIPES_URL" -o "pipes-v${PIPES_VERSION}.tar.gz"
 		tar -xzvf "pipes-v${PIPES_VERSION}.tar.gz"
-		make -C "pipes.sh-$PIPES_VERSION" PREFIX="$BIN_DIR" install
+		make -C "pipes.sh-$PIPES_VERSION" PREFIX="$BIN_DIR"/pipes.sh install
 		popd
 	fi
 }
