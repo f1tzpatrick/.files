@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+install_az() {
+	if ! command -v az &>/dev/null; then
+		curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+	fi
+}
+
 install_bat() {
 	: "${BAT_VERSION:="0.24.0"}"
 	BAT_URL="https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
@@ -9,6 +15,42 @@ install_bat() {
 		tar -xzvf bat.tar.gz
 		mv "bat-v${BAT_VERSION}-x86_64-unknown-linux-gnu" bat
 		mv bat "$BIN_DIR"
+		popd
+	fi
+}
+
+install_bottom() {
+	: "${BOTTOM_VERSION:="0.9.6"}"
+	BOTTOM_URL="https://github.com/ClementTsang/bottom/releases/download/${BOTTOM_VERSION}/bottom_x86_64-unknown-linux-musl.tar.gz"
+	if ! command -v bottom &>/dev/null; then
+		pushd "$DOWNLOADS_DIR"
+		curl -sSL "$BOTTOM_URL" -o bottom.tar.gz
+		tar -xzvf bottom.tar.gz
+		mv btm "$BIN_DIR"
+		popd
+	fi
+}
+
+install_dust() {
+	: "${DUST_VERSION:="0.8.6"}"
+	DUST_URL="https://github.com/bootandy/dust/releases/download/v${DUST_VERSION}/dust-v${DUST_VERSION}-x86_64-unknown-linux-musl.tar.gz"
+	if ! command -v bat &>/dev/null; then
+		pushd "$DOWNLOADS_DIR"
+		curl -sSL "$DUST_URL" -o "dust-v${DUST_VERSION}-x86_64-unknown-linux-musl.tar.gz"
+		tar -xzvf "dust-v${DUST_VERSION}-x86_64-unknown-linux-musl.tar.gz"
+		mv "dust-v${DUST_VERSION}-x86_64-unknown-linux-musl/dust" "$BIN_DIR"
+		popd
+	fi
+}
+
+install_duf() {
+	: "${DUF_VERSION:="0.8.1"}"
+	DUF_URL="https://github.com/muesli/duf/releases/download/v${DUF_VERSION}/duf_${DUF_VERSION}_linux_x86_64.tar.gz"
+	if ! command -v duf &>/dev/null; then
+		pushd "$DOWNLOADS_DIR"
+		curl -sSL "$DUF_URL" -o duf.tar.gz
+		tar -xzvf duf.tar.gz
+		mv duf "$BIN_DIR"
 		popd
 	fi
 }
@@ -54,6 +96,18 @@ install_glow() {
 		mv glow "$BIN_DIR"
 		popd
 	fi
+}
+
+install_lazygit() {
+  : "${LAZYGIT_VERSION:="0.40.2"}"
+  LAZYGIT_URL="https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  if ! command -v lazygit &>/dev/null; then
+    pushd "$DOWNLOADS_DIR"
+    curl -sSL "$LAZYGIT_URL" -o "lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar -xzvf "lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    mv lazygit "$BIN_DIR"
+    popd
+  fi
 }
 
 install_neofetch() {
